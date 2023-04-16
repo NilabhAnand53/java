@@ -1,59 +1,45 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class QuestionPaperGenerator {
+public class Question {
+    private static final String FILE_NAME = "questions.txt";
+    private static final Scanner scanner = new Scanner(System.in);
+    private static List<String> questions = new ArrayList<>();
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("-----Question Paper Generator-----");
-            System.out.println("1. Add a new question");
-            System.out.println("2. Remove a question");
-            System.out.println("3. Edit a question");
-            System.out.println("4. Generate a question paper");
+        loadQuestions();
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("--------Question Paper Generator--------");
+            System.out.println("1. View Questions");
+            System.out.println("2. Add a Question");
+            System.out.println("3. Remove a Question");
+            System.out.println("4. Save Questions");
             System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+            System.out.print("Enter your choice (1-5): ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume the newline character
+
             switch (choice) {
                 case 1:
-                    addQuestion();
+                    viewQuestions();
                     break;
                 case 2:
-                    removeQuestion();
+                    addQuestion();
                     break;
                 case 3:
-                    editQuestion();
+                    removeQuestion();
                     break;
                 case 4:
-                    generateQuestionPaper();
+                    saveQuestions();
                     break;
                 case 5:
-                    System.out.println("Exiting...");
+                    exit = true;
                     break;
                 default:
-                    System.out.println("Invalid choice! Please try again.");
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
             }
-            System.out.println();
-        } while (choice != 5);
-        scanner.close();
+        }
+        System.out.println("Thank you for using Question Paper Generator!");
     }
-
-    private static void addQuestion() {
-        // code to add a new question
-        System.out.println("Adding a new question...");
-    }
-
-    private static void removeQuestion() {
-        // code to remove a question
-        System.out.println("Removing a question...");
-    }
-
-    private static void editQuestion() {
-        // code to edit a question
-        System.out.println("Editing a question...");
-    }
-
-    private static void generateQuestionPaper() {
-        // code to generate a question paper
-        System.out.println("Generating a question paper...");
-    }
-}
