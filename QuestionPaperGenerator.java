@@ -43,3 +43,30 @@ public class Question {
         }
         System.out.println("Thank you for using Question Paper Generator!");
     }
+
+    private static void loadQuestions() {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                questions.add(line);
+            }
+            System.out.println("Questions loaded successfully from " + FILE_NAME);
+        } catch (FileNotFoundException e) {
+            System.out.println("Questions file not found: " + FILE_NAME);
+        } catch (IOException e) {
+            System.out.println("Error while reading questions file: " + e.getMessage());
+        }
+    }
+
+    private static void viewQuestions() {
+        if (questions.isEmpty()) {
+            System.out.println("No questions found.");
+            return;
+        }
+        System.out.println("--------View Questions--------");
+        for (int i = 0; i < questions.size(); i++) {
+            System.out.println((i + 1) + ". " + questions.get(i));
+        }
+    }
+
+    
