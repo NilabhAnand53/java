@@ -69,4 +69,17 @@ public class Question {
         }
     }
 
-    
+    private static void addQuestion() {
+        System.out.println("--------Add a Question--------");
+        System.out.print("Enter the question: ");
+        String question = scanner.nextLine();
+        questions.add(question);
+        System.out.println("Question added successfully.");
+    }
+
+    private static void removeQuestion() {
+        if (questions.isEmpty()) {
+            System.out.println("No questions found to remove.");
+            return;
+        }
+        
