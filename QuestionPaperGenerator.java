@@ -82,4 +82,33 @@ public class Question {
             System.out.println("No questions found to remove.");
             return;
         }
-        
+        System.out.println("--------Remove a Question--------");
+        System.out.print("Enter the question number to remove (1-" + questions.size() + "): ");
+        int index = scanner.nextInt();
+        scanner.nextLine(); // consume the newline character
+        if (index < 1 || index > questions.size()) {
+            System.out.println("Invalid question number. Please try again.");
+            return;
+        }
+        questions.remove(index - 1);
+        System.out.println("Question removed successfully.");
+    }
+
+    private static void saveQuestions() {
+        if (questions.isEmpty()) {
+            System.out.println("No questions found to save.");
+            return;
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (String question : questions) {
+                bw.write(question);
+                bw.newLine();
+            }
+            System.out.println("Questions saved successfully to " + FILE_NAME);
+        } catch (IOException e) {
+            System.out.println("Error while writing questions file:");
+        }
+
+
+    }
+}
